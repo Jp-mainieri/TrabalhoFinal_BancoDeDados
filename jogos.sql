@@ -3,7 +3,7 @@ show databases;
 use BD180225117;
 SHOW TABLES;
 CREATE TABLE jogos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_jogo INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     desenvolvedora VARCHAR(100),
     genero VARCHAR(50),
