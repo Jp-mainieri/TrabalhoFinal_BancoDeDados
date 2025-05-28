@@ -7,3 +7,4 @@ nome_time VARCHAR(100),
 torneio VARCHAR (100), 
 presidente VARCHAR(100), 
 tecnico VARCHAR(100));
+ALTER Table times ADD FOREIGN KEY (torneio) REFERENCES torneios(Id_torneio);
