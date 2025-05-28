@@ -1,0 +1,1 @@
+CREATE table JOGADORES(Nome, time, cpf, data_nascimento, sexo) 
