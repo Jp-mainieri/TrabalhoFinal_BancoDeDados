@@ -1,1 +1,1 @@
-CREATE Table torneios()
+CREATE Table torneios(Id_torneios INT PRIMARY KEY,)
