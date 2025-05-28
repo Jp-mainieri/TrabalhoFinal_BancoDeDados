@@ -8,7 +8,7 @@ CREATE Table torneios(
 );
 
 CREATE TABLE jogos (
-    id_jogo INT AUTO_INCREMENT PRIMARY KEY,
+    Id_jogo INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     desenvolvedora VARCHAR(100),
     genero VARCHAR(50),
@@ -35,4 +35,5 @@ tecnico VARCHAR(100));
 ALTER Table times ADD FOREIGN KEY (torneio) REFERENCES torneios(Id_torneio);
 
 ALTER Table jogadores ADD FOREIGN KEY (time) REFERENCES times(Id_time);
+
 
