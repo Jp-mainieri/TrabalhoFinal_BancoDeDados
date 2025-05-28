@@ -1,3 +1,4 @@
+-- Active: 1748438097855@@BD-ACD@3306@BD180225117
 CREATE Table torneios(
     Id_torneios INT PRIMARY KEY AUTO_INCREMENT,
     nome_torneio Varchar(100),

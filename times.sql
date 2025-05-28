@@ -1,4 +1,3 @@
--- Active: 1748438772802@@BD-ACD@3306@BD180225117
 show databases;
 use BD180225117;
 show tables;
