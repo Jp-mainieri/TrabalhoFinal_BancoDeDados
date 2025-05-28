@@ -7,6 +7,7 @@ CREATE Table torneios(
     data_inicio DATE,
     data_final DATE
 );
+ALTER TABLE
 INSERT INTO torneios(nome_torneio,jogo,premiacao_torneios,data_inicio,data_final) VALUES ()
 VALUES
 ('Torneio 1', 'League of Legends', 1000.00, '2022-01-01', '2022-01-10'),
