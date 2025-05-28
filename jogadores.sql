@@ -4,4 +4,4 @@ CREATE table jogadores(
     INT PRIMARY KEY cpf,
     data_nascimento DATE,
     sexo VARCHAR (20)
-)
+);
