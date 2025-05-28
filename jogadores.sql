@@ -1,7 +1,7 @@
 CREATE table JOGADORES(
     Nome VARCHAR (100), 
     time VARCHAR (50), 
-    INT PRIMARY KEY cpf,
+    cpf INT PRIMARY KEY,
     data_nascimento DATE,
     sexo VARCHAR (20)
 )
