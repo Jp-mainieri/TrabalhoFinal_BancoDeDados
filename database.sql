@@ -1,1 +1,1 @@
--- Active: 1743645348789@@BD-ACD@3306@BD180225117
+CREATE table JOGADORES(Nome, time, cpf, data_nascimento, sexo)
