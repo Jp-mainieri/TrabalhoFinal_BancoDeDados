@@ -109,7 +109,7 @@ INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
 ('Hugo Almeida', 'NightWolf', 'hugo@email.com', '1997-01-07', 15),
 ('Camila Mendes', 'SkyBlade', 'camila@email.com', '1998-08-30', 8);
 
-INSERT INTO Torneios (nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VALUES
+INSERT INTO torneios(nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VALUES
 ('Campeonato Verão 2025', 6, 50000.00, '2025-01-10', '2025-01-20'),
 ('Liga de Elite', 2, 75000.00, '2025-03-01', '2025-03-15'),
 ('Desafio Global', 3, 100000.00, '2025-05-05', '2025-05-20'),
@@ -126,7 +126,7 @@ INSERT INTO Torneios (nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) V
 ('Continental Clash', 13, 90000.00, '2026-04-05', '2026-04-25'),
 ('Legends Arena', 2, 87000.00, '2026-05-01', '2026-05-20');
 
-INSERT INTO Jogos (nome_jogo, genero, plataforma) VALUES
+INSERT INTO jogos(nome_jogo, genero, plataforma) VALUES
 ('Valorant', 'FPS', 'PC'),
 ('League of Legends', 'MOBA', 'PC'),
 ('Counter Strike 2', 'FPS', 'PC'),
@@ -143,17 +143,24 @@ INSERT INTO Jogos (nome_jogo, genero, plataforma) VALUES
 ('Apex Legends', 'Battle Royale', 'PC'),
 ('Heroes of the Storm', 'MOBA', 'PC');
 
-INSERT INTO Partidas (id_torneio, id_jogo, id_time1, id_time2, data_partida, placar_time1, placar_time2) VALUES
-(1, 1, 1, 2, '2025-01-11', 13, 11), (1, 2, 3, 4, '2025-01-12', 18, 20),
-(2, 3, 1, 3, '2025-03-02', 16, 8), (2, 4, 2, 5, '2025-03-03', 22, 19),
-(3, 5, 4, 5, '2025-05-06', 15, 15), (3, 1, 2, 3, '2025-05-07', 14, 16),
-(4, 2, 6, 7, '2025-06-02', 17, 13), (4, 3, 8, 9, '2025-06-03', 11, 12),
-(5, 4, 10, 11, '2025-07-11', 19, 21), (5, 5, 12, 13, '2025-07-12', 20, 18),
-(6, 6, 14, 15, '2025-08-02', 22, 20), (6, 1, 1, 4, '2025-08-03', 14, 10),
-(7, 2, 2, 5, '2025-09-06', 13, 19), (7, 3, 6, 7, '2025-09-07', 16, 16),
-(8, 4, 8, 9, '2025-10-02', 15, 14);
+INSERT INTO partidas(id_torneio, id_time1, id_time2, data_partida, placar_time1, placar_time2) VALUES
+(1, 1, 2, '2025-01-11', 13, 11),
+ (1, 3, 4, '2025-01-12', 18, 20),
+(2, 1, 3, '2025-03-02', 16, 8),
+ (2, 2, 5, '2025-03-03', 22, 19),
+(3, 4, 5, '2025-05-06', 15, 15),
+ (3, 2, 3, '2025-05-07', 14, 16),
+(4, 6, 7, '2025-06-02', 17, 13),
+ (4, 8, 9, '2025-06-03', 11, 12),
+(5, 10, 11, '2025-07-11', 19, 21),
+ (5, 12, 13, '2025-07-12', 20, 18),
+(6, 14, 15, '2025-08-02', 22, 20),
+ (6, 1, 4, '2025-08-03', 14, 10),
+(7, 2, 5, '2025-09-06', 13, 19),
+ (7, 6, 7, '2025-09-07', 16, 16),
+(8, 8, 9, '2025-10-02', 15, 14);
 
-INSERT INTO Participacoes (id_time, id_torneio, colocacao_final) VALUES
+INSERT INTO historico(id_time, id_torneio, colocacao_final) VALUES
 (1, 1, 1), (2, 1, 2), (3, 1, 3),
 (1, 2, 1), (2, 2, 3), (3, 2, 2),
 (4, 3, 3), (5, 3, 2), (2, 3, 1),
