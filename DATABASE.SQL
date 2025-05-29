@@ -5,7 +5,6 @@ CREATE TABLE torneios (
     premiacao DECIMAL(10,2),
     data_inicio DATE,
     data_fim DATE,
-    premio_total DECIMAL(10,2),
     Id_jogo INT
 );
 
@@ -113,7 +112,6 @@ INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
 ('Camila Mendes', 'SkyBlade', 'camila@email.com', '1998-08-30', 8);
 
 -- Inserção de dados na tabela Torneios
-```sql
 INSERT INTO Torneios (nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VALUES
 ('Campeonato Verão 2025', 6, 50000.00, '2025-01-10', '2025-01-20'), -- Fortnite
 ('Liga de Elite', 2, 75000.00, '2025-03-01', '2025-03-15'), -- League of Legends
