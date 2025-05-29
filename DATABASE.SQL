@@ -5,7 +5,6 @@ CREATE TABLE torneios (
     premiacao DECIMAL(10,2),
     data_inicio DATE,
     data_fim DATE,
-    Id_jogo INT
 );
 
 CREATE TABLE jogos (
@@ -14,8 +13,6 @@ CREATE TABLE jogos (
     genero VARCHAR(50),
     plataforma VARCHAR(100)
 );
-
-ALTER TABLE torneios ADD FOREIGN KEY (Id_jogo) REFERENCES jogos(Id_jogo);
 
 CREATE table jogadores(
     Id_jogadores INT PRIMARY KEY AUTO INCREMENT,
@@ -26,13 +23,11 @@ CREATE table jogadores(
     Id_time INT
 );
 
-CREATE TABLE times(
-Id_time INT PRIMARY KEY AUTO INCREMENT,
-nome_time VARCHAR(100) NOT NULL, 
-pais_origem VARCHAR(100)
+CREATE TABLE times (
+    Id_time INT PRIMARY KEY AUTO INCREMENT,
+    nome_time VARCHAR(100) NOT NULL, 
+    pais_origem VARCHAR(100)
 );
-
-ALTER Table jogadores ADD FOREIGN KEY (Id_time) REFERENCES times(Id_time);
 
 CREATE TABLE partidas (
     id_partida INT PRIMARY KEY AUTO_INCREMENT,
@@ -44,18 +39,22 @@ CREATE TABLE partidas (
     placar_time2 INT
 );
 
+CREATE TABLE historico (
+    id_historico INT AUTO_INCREMENT PRIMARY KEY,
+    id_time INT,
+    id_torneio INT,
+    colocacao_final INT
+);
+
+ALTER TABLE torneios ADD FOREIGN KEY (Id_jogo) REFERENCES jogos(Id_jogo);
+
+ALTER Table jogadores ADD FOREIGN KEY (Id_time) REFERENCES times(Id_time);
+
 ALTER TABLE partidas ADD FOREIGN KEY (id_torneio) REFERENCES Torneios(id_torneio);
 
 ALTER TABLE partidas ADD FOREIGN KEY (id_time1) REFERENCES Times(id_time);
 
 ALTER TABLE partidas ADD FOREIGN KEY (id_time2) REFERENCES Times(id_time);
-
-CREATE TABLE historico (
-    id_time INT,
-    id_torneio INT,
-    colocacao_final INT
-);
-ALTER TABLE historico ADD PRIMARY KEY (id_time, id_torneio);
 
 ALTER TABLE historico ADD FOREIGN KEY (id_time) REFERENCES Times(id_time);
 
@@ -78,7 +77,6 @@ INSERT INTO Times (nome_time, pais_origem) VALUES
 ('Mystic Knights', 'Portugal'),
 ('Cyber Phantoms', 'Polônia');
 
--- Inserção de dados na tabela Jogadores
 INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
 ('Carlos Silva', 'ShadowKing', 'carlos@email.com', '2000-05-12', 1),
 ('Julia Nunes', 'SniperGirl', 'julia@email.com', '1999-11-23', 1),
@@ -111,25 +109,23 @@ INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
 ('Hugo Almeida', 'NightWolf', 'hugo@email.com', '1997-01-07', 15),
 ('Camila Mendes', 'SkyBlade', 'camila@email.com', '1998-08-30', 8);
 
--- Inserção de dados na tabela Torneios
 INSERT INTO Torneios (nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VALUES
-('Campeonato Verão 2025', 6, 50000.00, '2025-01-10', '2025-01-20'), -- Fortnite
-('Liga de Elite', 2, 75000.00, '2025-03-01', '2025-03-15'), -- League of Legends
-('Desafio Global', 3, 100000.00, '2025-05-05', '2025-05-20'), -- Counter Strike 2
-('Clash Mundial', 4, 85000.00, '2025-06-01', '2025-06-15'), -- Dota 2
-('Arena Pro', 1, 60000.00, '2025-07-10', '2025-07-25'), -- Valorant
-('Summer Legends', 2, 95000.00, '2025-08-01', '2025-08-15'), -- League of Legends
-('eSports Challenge', 9, 72000.00, '2025-09-05', '2025-09-20'), -- Rainbow Six Siege
-('Ultimate Cup', 5, 80000.00, '2025-10-01', '2025-10-15'), -- Overwatch 2
-('Masters do Pixel', 10, 55000.00, '2025-11-01', '2025-11-15'), -- Rocket League
-('Final Clash', 3, 110000.00, '2025-12-01', '2025-12-20'), -- Counter Strike 2
-('Open Legends', 12, 65000.00, '2026-01-10', '2026-01-25'), -- Arena of Valor
-('Battle of Champions', 7, 78000.00, '2026-02-10', '2026-02-25'), -- PUBG
-('Spring Cup', 15, 50000.00, '2026-03-01', '2026-03-20'), -- Heroes of the Storm
-('Continental Clash', 13, 90000.00, '2026-04-05', '2026-04-25'), -- Call of Duty
-('Legends Arena', 2, 87000.00, '2026-05-01', '2026-05-20'); -- League of Legends
+('Campeonato Verão 2025', 6, 50000.00, '2025-01-10', '2025-01-20'),
+('Liga de Elite', 2, 75000.00, '2025-03-01', '2025-03-15'),
+('Desafio Global', 3, 100000.00, '2025-05-05', '2025-05-20'),
+('Clash Mundial', 4, 85000.00, '2025-06-01', '2025-06-15'),
+('Arena Pro', 1, 60000.00, '2025-07-10', '2025-07-25'),
+('Summer Legends', 2, 95000.00, '2025-08-01', '2025-08-15'),
+('eSports Challenge', 9, 72000.00, '2025-09-05', '2025-09-20'),
+('Ultimate Cup', 5, 80000.00, '2025-10-01', '2025-10-15'),
+('Masters do Pixel', 10, 55000.00, '2025-11-01', '2025-11-15'),
+('Final Clash', 3, 110000.00, '2025-12-01', '2025-12-20'),
+('Open Legends', 12, 65000.00, '2026-01-10', '2026-01-25'),
+('Battle of Champions', 7, 78000.00, '2026-02-10', '2026-02-25'),
+('Spring Cup', 15, 50000.00, '2026-03-01', '2026-03-20'), 
+('Continental Clash', 13, 90000.00, '2026-04-05', '2026-04-25'),
+('Legends Arena', 2, 87000.00, '2026-05-01', '2026-05-20');
 
--- Inserção de dados na tabela Jogos
 INSERT INTO Jogos (nome_jogo, genero, plataforma) VALUES
 ('Valorant', 'FPS', 'PC'),
 ('League of Legends', 'MOBA', 'PC'),
@@ -147,7 +143,6 @@ INSERT INTO Jogos (nome_jogo, genero, plataforma) VALUES
 ('Apex Legends', 'Battle Royale', 'PC'),
 ('Heroes of the Storm', 'MOBA', 'PC');
 
--- Inserção de dados na tabela Partidas
 INSERT INTO Partidas (id_torneio, id_jogo, id_time1, id_time2, data_partida, placar_time1, placar_time2) VALUES
 (1, 1, 1, 2, '2025-01-11', 13, 11), (1, 2, 3, 4, '2025-01-12', 18, 20),
 (2, 3, 1, 3, '2025-03-02', 16, 8), (2, 4, 2, 5, '2025-03-03', 22, 19),
@@ -158,7 +153,6 @@ INSERT INTO Partidas (id_torneio, id_jogo, id_time1, id_time2, data_partida, pla
 (7, 2, 2, 5, '2025-09-06', 13, 19), (7, 3, 6, 7, '2025-09-07', 16, 16),
 (8, 4, 8, 9, '2025-10-02', 15, 14);
 
--- Inserção de dados na tabela Participacoes
 INSERT INTO Participacoes (id_time, id_torneio, colocacao_final) VALUES
 (1, 1, 1), (2, 1, 2), (3, 1, 3),
 (1, 2, 1), (2, 2, 3), (3, 2, 2),
