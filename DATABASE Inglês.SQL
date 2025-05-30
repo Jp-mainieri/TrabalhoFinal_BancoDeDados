@@ -1,67 +1,67 @@
 -- Active: 1744742548804@@127.0.0.1@3306@projeto_integrador_fase2
-CREATE TABLE torneios (
-    Id_torneio INT PRIMARY KEY AUTO_INCREMENT,
-    nome_torneio VARCHAR(100),
-    Id_jogo INT,
-    premiacao DECIMAL(10,2),
-    data_inicio DATE,
-    data_fim DATE
+CREATE TABLE tournaments (
+    id_tournament INT PRIMARY KEY AUTO_INCREMENT,
+    tournament_name VARCHAR(100),
+    id_game INT,
+    prize DECIMAL(10,2),
+    start_date DATE,
+    end_date DATE
 );
 
-CREATE TABLE jogos (
-    Id_jogo INT AUTO_INCREMENT PRIMARY KEY,
-    nome_jogo VARCHAR(100) NOT NULL,
-    genero VARCHAR(50),
-    plataforma VARCHAR(100)
+CREATE TABLE games (
+    id_game INT AUTO_INCREMENT PRIMARY KEY,
+    game_name VARCHAR(100) NOT NULL,
+    gender VARCHAR(50),
+    platform VARCHAR(100)
 );
 
-CREATE table jogadores(
-    Id_jogadores INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR (100) NOT NULL,
+CREATE table players(
+    id_players INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR (100) NOT NULL,
     nickname VARCHAR(100) NOT NULL,
     email VARCHAR(100),
-    data_nascimento DATE,
-    Id_time INT
+    birthday DATE,
+    id_team INT
 );
 
-CREATE TABLE times (
-    Id_time INT PRIMARY KEY AUTO_INCREMENT,
-    nome_time VARCHAR(100) NOT NULL, 
-    pais_origem VARCHAR(100)
+CREATE TABLE teams (
+    id_team INT PRIMARY KEY AUTO_INCREMENT,
+    team_name VARCHAR(100) NOT NULL, 
+    origin_country VARCHAR(100)
 );
 
-CREATE TABLE partidas (
-    id_partida INT PRIMARY KEY AUTO_INCREMENT,
-    id_torneio INT,
-    id_time1 INT,
-    id_time2 INT,
-    data_partida DATE,
-    placar_time1 INT,
-    placar_time2 INT
+CREATE TABLE matches (
+    id_match INT PRIMARY KEY AUTO_INCREMENT,
+    id_tournament INT,
+    id_team1 INT,
+    id_team2 INT,
+    match_date DATE,
+    score_team1 INT,
+    score_team2 INT
 );
 
-CREATE TABLE historico (
-    id_historico INT AUTO_INCREMENT PRIMARY KEY,
-    id_time INT,
-    id_torneio INT,
-    colocacao_final INT
+CREATE TABLE hystoric (
+    id_fystoric INT AUTO_INCREMENT PRIMARY KEY,
+    id_team INT,
+    id_tournament INT,
+    final_position INT
 );
 
-ALTER TABLE torneios ADD FOREIGN KEY (Id_jogo) REFERENCES jogos(Id_jogo);
+ALTER TABLE tournaments ADD FOREIGN KEY (id_game) REFERENCES games(id_game);
 
-ALTER Table jogadores ADD FOREIGN KEY (Id_time) REFERENCES times(Id_time);
+ALTER Table players ADD FOREIGN KEY (id_team) REFERENCES teams(id_team);
 
-ALTER TABLE partidas ADD FOREIGN KEY (id_torneio) REFERENCES Torneios(id_torneio);
+ALTER TABLE matches ADD FOREIGN KEY (id_tournament) REFERENCES tournaments(id_tournament);
 
-ALTER TABLE partidas ADD FOREIGN KEY (id_time1) REFERENCES Times(id_time);
+ALTER TABLE matches ADD FOREIGN KEY (id_team1) REFERENCES teams(id_team);
 
-ALTER TABLE partidas ADD FOREIGN KEY (id_time2) REFERENCES Times(id_time);
+ALTER TABLE matches ADD FOREIGN KEY (id_team2) REFERENCES teams(id_team);
 
-ALTER TABLE historico ADD FOREIGN KEY (id_time) REFERENCES Times(id_time);
+ALTER TABLE hystoric ADD FOREIGN KEY (id_team) REFERENCES teams(id_team);
 
-ALTER TABLE historico ADD FOREIGN KEY (id_torneio) REFERENCES Torneios(id_torneio);
+ALTER TABLE hystoric ADD FOREIGN KEY (id_tournament) REFERENCES tournaments(id_tournament);
 
-INSERT INTO Times (nome_time, pais_origem) VALUES
+INSERT INTO teams (team_name, origin_country) VALUES
 ('Dragons Elite', 'Brasil'),
 ('Cyber Titans', 'EUA'),
 ('Shadow Wolves', 'Canadá'),
@@ -78,7 +78,7 @@ INSERT INTO Times (nome_time, pais_origem) VALUES
 ('Mystic Knights', 'Portugal'),
 ('Cyber Phantoms', 'Polônia');
 
-INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
+INSERT INTO players (name, nickname, email, birthday, id_team) VALUES
 ('Carlos Silva', 'ShadowKing', 'carlos@email.com', '2000-05-12', 1),
 ('Julia Nunes', 'SniperGirl', 'julia@email.com', '1999-11-23', 1),
 ('Victor Lima', 'Ghost', 'victor@email.com', '2001-08-09', 2),
@@ -110,7 +110,7 @@ INSERT INTO Jogadores (nome, nickname, email, data_nascimento, id_time) VALUES
 ('Hugo Almeida', 'NightWolf', 'hugo@email.com', '1997-01-07', 15),
 ('Camila Mendes', 'SkyBlade', 'camila@email.com', '1998-08-30', 8);
 
-INSERT INTO torneios(nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VALUES
+INSERT INTO tournaments(tournament_name, id_game, prize, start_date, end_date) VALUES
 ('Campeonato Verão 2025', 6, 50000.00, '2025-01-10', '2025-01-20'),
 ('Liga de Elite', 2, 75000.00, '2025-03-01', '2025-03-15'),
 ('Desafio Global', 3, 100000.00, '2025-05-05', '2025-05-20'),
@@ -127,7 +127,7 @@ INSERT INTO torneios(nome_torneio, Id_jogo, premiacao, data_inicio, data_fim) VA
 ('Continental Clash', 13, 90000.00, '2026-04-05', '2026-04-25'),
 ('Legends Arena', 2, 87000.00, '2026-05-01', '2026-05-20');
 
-INSERT INTO jogos(nome_jogo, genero, plataforma) VALUES
+INSERT INTO games(game_name, gender, platform) VALUES
 ('Valorant', 'FPS', 'PC'),
 ('League of Legends', 'MOBA', 'PC'),
 ('Counter Strike 2', 'FPS', 'PC'),
@@ -144,7 +144,7 @@ INSERT INTO jogos(nome_jogo, genero, plataforma) VALUES
 ('Apex Legends', 'Battle Royale', 'PC'),
 ('Heroes of the Storm', 'MOBA', 'PC');
 
-INSERT INTO partidas(id_torneio, id_time1, id_time2, data_partida, placar_time1, placar_time2) VALUES
+INSERT INTO matches(id_tournament, id_team1, id_team2, match_date, score_team1, score_team2) VALUES
 (1, 1, 2, '2025-01-11', 13, 11),
  (1, 3, 4, '2025-01-12', 18, 20),
 (2, 1, 3, '2025-03-02', 16, 8),
@@ -161,7 +161,7 @@ INSERT INTO partidas(id_torneio, id_time1, id_time2, data_partida, placar_time1,
  (7, 6, 7, '2025-09-07', 16, 16),
 (8, 8, 9, '2025-10-02', 15, 14);
 
-INSERT INTO historico(id_time, id_torneio, colocacao_final) VALUES
+INSERT INTO hystoric(id_team, id_tournament, final_position) VALUES
 (1, 1, 1), (2, 1, 2), (3, 1, 3),
 (1, 2, 1), (2, 2, 3), (3, 2, 2),
 (4, 3, 3), (5, 3, 2), (2, 3, 1),
@@ -170,38 +170,38 @@ INSERT INTO historico(id_time, id_torneio, colocacao_final) VALUES
 (12, 6, 1), (13, 6, 2), (14, 6, 3),
 (15, 7, 1), (1, 7, 2), (2, 7, 3);
 
-SELECT t.nome_time, COUNT(*) AS vitorias FROM Partidas p 
-JOIN Times t ON (
-    (p.id_time1 = t.id_time AND p.placar_time1 > p.placar_time2)
-    OR (p.id_time2 = t.id_time AND p.placar_time2 > p.placar_time1)
+SELECT t.team_name, COUNT(*) AS wins FROM matches m
+JOIN teams t ON (
+    (m.id_team1 = t.id_team AND m.score_team1 > m.score_team2)
+    OR (m.id_team1 = t.id_team AND m.score_team2 > m.score_team1)
 )
-GROUP BY t.nome_time
-ORDER BY vitorias DESC;
+GROUP BY t.team_name
+ORDER BY wins DESC;
 
-SELECT j.nome_jogo, COUNT(p.id_partida) AS total_partidas
-FROM partidas p
-JOIN torneios t ON p.id_torneio = t.id_torneio
-JOIN jogos AS j ON t.Id_jogo = j.Id_jogo
-GROUP BY j.nome_jogo
-ORDER BY total_partidas DESC;
-
-SELECT 
-    nome_torneio,
-    premiacao
-FROM Torneios
-ORDER BY premiacao DESC;
+SELECT g.game_name, COUNT(m.id_match) AS total_matches
+FROM matches m
+JOIN tournaments t ON m.id_tournament = t.id_tournament
+JOIN games AS g ON t.id_game = g.id_game
+GROUP BY g.game_name
+ORDER BY total_matches DESC;
 
 SELECT 
-    t.nome_time,
-    COUNT(j.Id_jogadores) AS total_jogadores
-FROM Times t
-LEFT JOIN Jogadores AS j ON j.Id_time = t.Id_time
-GROUP BY t.nome_time
-ORDER BY total_jogadores DESC;
+    tournament_name,
+    prize
+FROM tournaments
+ORDER BY prize DESC;
 
 SELECT 
-    genero,
-    COUNT(*) AS quantidade
-FROM Jogos
-GROUP BY genero
-ORDER BY quantidade DESC;
+    t.team_name,
+    COUNT(p.id_players) AS total_players
+FROM teams t
+LEFT JOIN players AS p ON p.id_team = t.id_team
+GROUP BY t.team_name
+ORDER BY total_players DESC;
+
+SELECT 
+    gender,
+    COUNT(*) AS total_gender
+FROM games
+GROUP BY gender
+ORDER BY total_gender DESC;
